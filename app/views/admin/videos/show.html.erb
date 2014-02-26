@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Video name:</strong>
+  <%= @video.video_name %>
+</p>
+
+<p>
+  <strong>Video description:</strong>
+  <%= @video.video_description %>
+</p>
+
+<p>
+  <strong>Youtube url:</strong>
+  <%= @video.youtube_url %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @video.start_time %>
+</p>
+
+<p>
+  <strong>Stop time:</strong>
+  <%= @video.stop_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @video.end_time %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @video.result %>
+</p>
+
+<%= link_to 'Edit', edit_admin_video_path(@video) %> |
+<%= link_to 'Back', admin_videos_path %>
