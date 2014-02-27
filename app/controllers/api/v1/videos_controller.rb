@@ -9,6 +9,7 @@ module Api
         size = params[:size] || 1
         exclude = params[:exclude] || ""
         exclude = exclude.split(',')
+        exclude = exclude.map{|e|e.to_i}
 
         @videos = Video.where(id: generate_random_ids(exclude, size))
 
@@ -39,6 +40,9 @@ module Api
         indexes = []
 
         size = size.to_i
+
+        #prevent endless loop when size is greater than available ids
+        size = ids.size < size ? ids.size : size
 
         while indexes.size < size
           id = ids.sample
