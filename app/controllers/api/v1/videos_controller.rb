@@ -18,7 +18,11 @@ module Api
 
           real_url = get_video_url(video.youtube_url)
           if(!real_url.nil?)
-            @results.append(real_url)
+            @results.append({
+              id: video.id,
+              url: real_url,
+              result: video.result
+              })
           end
 
         end
