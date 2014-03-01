@@ -58,6 +58,8 @@ module Api
       def get_video_url(url)
         cached = VideoCache.find_by(youtube_url: url)
 
+        print "cached video url: " + cached.video_url
+
         if(cached.nil?)
           #out to cache
           print "=============================================\n"
@@ -81,13 +83,18 @@ module Api
       end
 
       def is_alive?(url)
-        uri = URI(url)
+        begin
+          print "url is " + url
+          uri = URI(url)
 
-        response = nil
-        Net::HTTP.start(uri.host, uri.port, {use_ssl: (true if uri.scheme == "https")}) {|http|
-          response = http.head(uri.to_s)
-        }
-        return response.code == "200"
+          response = nil
+          Net::HTTP.start(uri.host, uri.port, {use_ssl: (true if uri.scheme == "https")}) {|http|
+            response = http.head(uri.to_s)
+          }
+          return response.code == "200"
+        rescue Exception => e
+          return false
+        end
       end
 
       def get_real_url(youtube_url)
