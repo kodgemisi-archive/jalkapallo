@@ -1,7 +1,9 @@
 class UpdateVideoUrlFromVideoCache < ActiveRecord::Migration
-  def change
-    change_table :video_caches do |t|
-      t.change :video_url, :text
-    end
+  def up
+    change_column :video_caches, :video_url, :text
+  end
+
+  def down
+    change_column :video_caches, :video_url, :string
   end
 end
