@@ -22,7 +22,12 @@ module Api
             @results.append({
               id: video.id,
               url: real_url,
-              result: video.result
+              result: video.result,
+              start_time: video.start_time,
+              end_time: video.end_time,
+              stop_time: video.stop_time,
+              name: video.video_name,
+              desc: video.video_description
               })
           end
 
@@ -58,9 +63,8 @@ module Api
       def get_video_url(url)
         cached = VideoCache.find_by(youtube_url: url)
 
-        print "cached video url: " + cached.video_url
-
         if(cached.nil?)
+          print "cached video url: " + cached.video_url
           #out to cache
           print "=============================================\n"
           print "putting to cache"
