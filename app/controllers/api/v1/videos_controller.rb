@@ -64,7 +64,6 @@ module Api
         cached = VideoCache.find_by(youtube_url: url)
 
         if(cached.nil?)
-          print "cached video url: " + cached.video_url
           #out to cache
           print "=============================================\n"
           print "putting to cache"
